@@ -16,12 +16,9 @@ public class Ruta {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
     @OneToMany(mappedBy = "ruta", cascade = CascadeType.ALL)
     private List<PuntoEntrega> puntosEntrega;
-
     private double distanciaTotal;
-
     private double tiempoEstimado;
 
 }

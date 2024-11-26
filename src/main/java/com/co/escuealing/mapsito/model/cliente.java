@@ -1,26 +1,25 @@
 package com.co.escuealing.mapsito.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
 
 /**
  * @author sebastian.garciah
- * @created 25/11/2024
+ * @created 26/11/2024
  * @project mapsito
  */
 
-
 @Entity
 @Data
-public class PuntoEntrega {
+public class cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "ruta_id")
-    private Ruta ruta;
     private String direccion;
-    private double latitud;
-    private double longitud;
+    private int telefono;
+    private String nombre;
+
 }
