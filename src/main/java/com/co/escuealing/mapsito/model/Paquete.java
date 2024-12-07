@@ -1,9 +1,13 @@
 package com.co.escuealing.mapsito.model;
 
+import com.co.escuealing.mapsito.model.enums.EstadoPaqueteEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 /**
@@ -21,4 +25,12 @@ public class Paquete {
     private int peso;
     private String descripcion;
     private boolean fragil;
+    private EstadoPaqueteEnum estadoPaqueteEnum;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    private Long ruta;
+
 }

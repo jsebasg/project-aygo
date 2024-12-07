@@ -14,12 +14,13 @@ import lombok.Data;
 
 @Entity
 @Data
-public class cliente {
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String direccion;
     private int telefono;
     private String nombre;
+    private String correo;
 
 }

@@ -2,6 +2,7 @@ package com.co.escuealing.mapsito.controller;
 
 import com.co.escuealing.mapsito.model.Ruta;
 import com.co.escuealing.mapsito.service.RutaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,8 @@ import java.util.List;
 @RequestMapping("/api/rutas")
 public class RutaController {
 
-    private final RutaService rutaService;
+    @Autowired
+    private RutaService rutaService;
 
     public RutaController(RutaService rutaService) {
         this.rutaService = rutaService;
@@ -40,6 +42,15 @@ public class RutaController {
     @GetMapping("/{id}")
     public ResponseEntity<Ruta> obtenerPorId(@PathVariable Long id) {
         Ruta ruta = rutaService.obtenerPorId(id);
+        if (ruta != null) {
+            return ResponseEntity.ok(ruta);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/{idRuta}/{idPaquete}")
+    public ResponseEntity<Ruta> agregarNuevoPaquete(@PathVariable Long idRuta, @PathVariable Long idPaquete  ){
+        Ruta ruta = rutaService.agregarNuevoPaquete(idRuta, idPaquete);
         if (ruta != null) {
             return ResponseEntity.ok(ruta);
         } else {
