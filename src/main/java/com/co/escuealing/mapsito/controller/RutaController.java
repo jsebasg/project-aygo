@@ -57,4 +57,15 @@ public class RutaController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/calcularTiempoDemora/{id}")
+    public ResponseEntity<String> calcularTiempoDemoraRuta(@PathVariable Long id) {
+        try {
+            // Llamar al servicio para calcular el tiempo de demora
+            rutaService.calcularTiempoDemoraRuta(id);
+            return ResponseEntity.ok("Tiempo de demora calculado con éxito.");
+        } catch (Exception e) {
+            // Manejo de excepciones
+            return ResponseEntity.status(500).body("Error al calcular el tiempo de demora: " + e.getMessage());
+        }
+    }
 }

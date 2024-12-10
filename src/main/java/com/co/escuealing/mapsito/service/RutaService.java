@@ -11,6 +11,7 @@ import software.amazon.awssdk.services.sns.model.SubscribeRequest;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author sebastian.garciah
@@ -29,6 +30,9 @@ public class RutaService {
     private RutaRepository rutaRepository;
     @Autowired
     private PaqueteRepository paqueteRepository;
+
+    @Autowired
+    private GoogleMapsDirectionsAPI googleMapsDirectionsAPI;
 
 
     public List<Ruta> obtenerTodas() {
@@ -64,5 +68,10 @@ public class RutaService {
 
         }
         return null;
+    }
+
+    public void calcularTiempoDemoraRuta(Long id) throws Exception {
+        Ruta ruta = rutaRepository.findById(id).orElseThrow(() ->  new Exception(""));
+        googleMapsDirectionsAPI.obtenerTiempoDemora(ruta.getOrigen(), ruta.getDestino(), ruta.getPaquete().stream().map(e -> e.getCliente().getDireccion()).collect(Collectors.toList()).toArray(new String[0])  , "$APIKEY" );
     }
 }

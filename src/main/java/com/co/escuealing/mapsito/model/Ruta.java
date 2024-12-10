@@ -22,5 +22,7 @@ public class Ruta {
     private double distanciaTotal;
     private double tiempoEstimado;
     private String nombre;
+    private String origen;
+    private String destino;
 
 }
